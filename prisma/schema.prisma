@@ -29,6 +29,7 @@ model Teacher {
   name         String
   departament String
   disciplineID Int
+  photo        Bytes?
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
   Discipline   Discipline @relation(fields: [disciplineID], references: [id])
