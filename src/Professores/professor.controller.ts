@@ -1,4 +1,3 @@
-// src/teacher/teacher.controller.ts
 import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { TeacherService } from './professor.service';
 
