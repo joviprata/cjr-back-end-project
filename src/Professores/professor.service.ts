@@ -11,7 +11,7 @@ export class TeacherService {
       where: { id },
       include: {
         Discipline: true,
-        reviews: true,
+        Reviews: true,
       },
     });
     if (!teacher) {

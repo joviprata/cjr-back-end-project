@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,75 +8,71 @@ datasource db {
 }
 
 model User {
-  id         Int        @id @default(autoincrement())
-  name       String
-  email      String     @unique
+  id            Int        @id @default(autoincrement())
+  name          String
+  email         String     @unique
   password      String
-  departament String
-  course      String
-  photoProfile Bytes?
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
-  Reviews Review[]
-  Comments Comments[]
+  departament   String
+  course        String
+  photoProfile  Bytes?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  Reviews       Review[]
+  Comments      Comments[]
 
   @@map("users")
 }
 
 model Teacher {
-  id           Int        @id @default(autoincrement())
-  name         String
-  departament String
-  disciplineID Int
-  photo        Bytes?
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-  Discipline   Discipline @relation(fields: [disciplineID], references: [id])
-  reviews Review @relation(fields: [reviewID], references: [id])
-  reviewID Int @unique
+  id            Int        @id @default(autoincrement())
+  name          String
+  departament   String
+  disciplineID  Int
+  photo         Bytes?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  Discipline    Discipline @relation(fields: [disciplineID], references: [id])
+  Reviews       Review[]
 
   @@map("teachers")
 }
 
 model Discipline {
-  id           Int          @id @default(autoincrement())
-  name         String
-  teacherID String
-  review Review @relation(fields: [reviewID], references: [id])
-  reviewID Int @unique
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
-  Teacher  Teacher[]
-  
+  id            Int        @id @default(autoincrement())
+  name          String
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  Teachers      Teacher[]
+  Reviews       Review[]
 
   @@map("disciplines")
 }
 
 model Review {
-  id           Int        @id @default(autoincrement())
-  userID    Int
-  teacherID  Int
-  disciplineID Int
-  content     String
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-  Usuer      User    @relation(fields: [userID], references: [id])
-  teacher    Teacher?
-  discipline Discipline?
-  Comments  Comments[]
+  id            Int        @id @default(autoincrement())
+  userID        Int
+  teacherID     Int
+  disciplineID  Int
+  content       String
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  User          User       @relation(fields: [userID], references: [id])
+  Teacher       Teacher    @relation(fields: [teacherID], references: [id])
+  Discipline    Discipline @relation(fields: [disciplineID], references: [id])
+  Comments      Comments[]
 
   @@map("reviews")
 }
 
 model Comments {
-  id          Int        @id @default(autoincrement())
-  userID   Int
-  reviewID Int
-  content    String
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  User     User    @relation(fields: [userID], references: [id])
-  Review   Review  @relation(fields: [reviewID], references: [id])
+  id            Int        @id @default(autoincrement())
+  userID        Int
+  reviewID      Int
+  content       String
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+  User          User       @relation(fields: [userID], references: [id])
+  Review        Review     @relation(fields: [reviewID], references: [id])
 
   @@map("comments")
 }
