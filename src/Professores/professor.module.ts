@@ -1,4 +1,3 @@
-// src/teacher/teacher.module.ts
 import { Module } from '@nestjs/common';
 import { TeacherService } from './professor.service';
 import { TeacherController } from './professor.controller';

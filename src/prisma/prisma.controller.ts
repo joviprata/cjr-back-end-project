@@ -1,4 +1,3 @@
-// src/prisma/prisma.controller.ts
 import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
 

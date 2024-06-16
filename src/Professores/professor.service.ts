@@ -20,7 +20,7 @@ export class TeacherService {
 
     return {
       ...teacher,
-      reviews: teacher.reviews || [],
+      reviews: teacher.Reviews || [],
     };
   }
 }
